@@ -19,7 +19,7 @@ public class ChangelogPlugin : BasePlugin<ChangelogExtension>(ChangelogExtension
 //        }
 
         println(GitCmdRunner.latestTag(target))
-        println(GitCmdRunner.getCommitSha(target, "v0.0.1"))
+        println(GitCmdRunner.getCommitSha(target, "v0.0.2"))
         println(GitCmdRunner.gitHistory(target,"",""))
         //# configuration:
         // -

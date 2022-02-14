@@ -15,10 +15,21 @@ object GitCmdRunner {
         return output.toString()
     }
 
+    fun currentCommitSha(project: Project): String{
+        val output = ByteArrayOutputStream().use { outputStream ->
+            project.exec {
+                args= listOf("rev-parse","HEAD")
+                executable = "git"
+                standardOutput = outputStream
+            }
+        }
+        return output.toString()
+    }
+
     fun getCommitSha(project: Project, versionTag: String): String{
         val output = ByteArrayOutputStream().use { outputStream ->
             project.exec {
-                args= listOf("show-ref","--heads", "--hash", versionTag)
+                args= listOf("rev-list","-1", versionTag)
                 executable = "git"
                 standardOutput = outputStream
             }
