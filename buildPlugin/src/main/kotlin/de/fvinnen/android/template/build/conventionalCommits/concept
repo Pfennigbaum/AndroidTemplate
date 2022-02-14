@@ -1,0 +1,62 @@
+Conventional Commits:
+Format:
+****************************************************
+<type>(<scope>): <subject>
+<BLANK LINE>
+<body>
+<BLANK LINE>
+<footer>
+*****************************************************
+feat(user)!: Add Feature XYZ
+
+lorem ipsum
+
+BREAKING CHANGE: no more users
+(#123)
+*****************************************************
+
+Configuration:
+# dryrun
+
+History
+- collect latest tag
+- collect commits until latest tag
+
+
+Version:
+- recentVersion = latestTag - "v"
+- currentVersion = iterate commits and inc:
+    Major: commit type contains "!"->xxxx!: or commit message/footer contains "BREAKING CHANGE" "BREAKING-CHANGE"
+    Minor: type is "feat"
+    Bugfix: commit type is "fix" or other
+
++feat
++fix
++chore
++docs
++style
++test
+
+Changelog:
+- iterate commits and collect:
+        Features: Headline -type(scope)! + Footer ref (#/d*)
+        Bugfixes: Headline -type(scope)! + Footer ref (#/d*)
+        Other Changes: Headline -type(scope)! + Footer ref (#/d*)
+- create readme tmp file:
+# New Features
+each features: - feature text
+
+# Fixes
+each bugfix: - bugfix text
+
+#Other Changes
+each other: - change text
+
+
+
+Release:
+take version output
+take changelog output
+take assemble output
+gh release create "v$version" changelog.md "apk"
+
