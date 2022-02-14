@@ -18,9 +18,16 @@ public class ChangelogPlugin : BasePlugin<ChangelogExtension>(ChangelogExtension
 //            }
 //        }
 
-        println(GitCmdRunner.latestTag(target))
-        println(GitCmdRunner.getCommitSha(target, "v0.0.2"))
-        println(GitCmdRunner.gitHistory(target,"",""))
+        val latestTag = GitCmdRunner.latestTag(target)
+//        val latestTagCommitSha = GitCmdRunner.getCommitSha(target, latestTag)
+        val latestTagCommitSha = GitCmdRunner.getCommitSha(target, "v0.0.2")
+        val currentCommitSha = GitCmdRunner.getCurrentCommitSha(target)
+        println(latestTagCommitSha)
+        println(currentCommitSha)
+        val history = GitCmdRunner.gitHistory(target,latestTagCommitSha, currentCommitSha)
+        println()
+//        println(GitCmdRunner.getCommitSha(target, "v0.0.2"))
+//        println(GitCmdRunner.gitHistory(target,"",""))
         //# configuration:
         // -
 

@@ -15,7 +15,7 @@ object GitCmdRunner {
         return output.toString()
     }
 
-    fun currentCommitSha(project: Project): String{
+    fun getCurrentCommitSha(project: Project): String{
         val output = ByteArrayOutputStream().use { outputStream ->
             project.exec {
                 args= listOf("rev-parse","HEAD")
@@ -40,7 +40,7 @@ object GitCmdRunner {
     fun gitHistory(project: Project, fromSha: String, toSha: String): List<String>{
         val output = ByteArrayOutputStream().use { outputStream ->
             project.exec {
-                args= listOf("log","$fromSha..$toSha", "--format:{\"title\":\"%s\",\"body\":\"%b\",\"author\":\"%an\",\"hash\":\"%h\"}")
+                args= listOf("log","$fromSha..$toSha", "--format={\"title\":\"%s\",\"body\":\"%b\",\"author\":\"%an\",\"hash\":\"%h\"}")
                 executable = "git"
                 standardOutput = outputStream
             }
